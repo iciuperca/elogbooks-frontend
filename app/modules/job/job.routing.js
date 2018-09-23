@@ -44,9 +44,19 @@
                 controllerAs: 'vm',
                 templateUrl: 'modules/job/update/update.html',
                 resolve: {
-                    userResponse : function ($http, $stateParams) {
+                    jobResponse : function ($http, $stateParams) {
                         return $http({
                             url: 'http://localhost:8001/job/' + $stateParams.id,
+                            method: "GET"
+                        }).then(function (response) {
+                            return response.data;
+                        }, function () {
+                            console.log('Request Failed');
+                        });
+                    },
+                    usersResponse : function ($http, $stateParams) {
+                        return $http({
+                            url: 'http://localhost:8001/user',
                             method: "GET"
                         }).then(function (response) {
                             return response.data;
